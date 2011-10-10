@@ -4,13 +4,15 @@ module Forem
       before_filter :find_topic
 
       def edit
+        @forums = Forum.all
       end
 
       def update
-        @topic.subject = params[:topic][:subject]
-        @topic.pinned  = params[:topic][:pinned]
-        @topic.locked  = params[:topic][:locked]
-        @topic.hidden  = params[:topic][:hidden]
+        @topic.subject  = params[:topic][:subject]
+        @topic.pinned   = params[:topic][:pinned]
+        @topic.locked   = params[:topic][:locked]
+        @topic.hidden   = params[:topic][:hidden]
+        @topic.forum_id = params[:topic][:forum_id]
         if @topic.save
           flash[:notice] = t("forem.topic.updated")
           redirect_to forum_topic_path(@topic.forum, @topic)
