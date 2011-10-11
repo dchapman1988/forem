@@ -1,5 +1,7 @@
 <%= simple_form_for [:admin, @topic] do |f| %>
   <%= f.input :subject %>
+  <br />
+  <br />
   <%= f.label :locked %>
   <%= f.check_box :locked %>
   <%= f.label :pinned %>
