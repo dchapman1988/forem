@@ -1,4 +1,6 @@
 <%= simple_form_for [:admin, @topic] do |f| %>
+  <br />
+  <br />
   <%= f.input :subject %>
   <br />
   <br />
@@ -11,7 +13,7 @@
   <br />
   <br />
   <%= f.label :forum_id %>
-  <%= f.select :forum_id, options_from_collection_for_select(@forums, 'id', 'title') %>
+  <%= f.select "forum_id", options_from_collection_for_select(Forem::Forum.all, :id, :title) %>
   <br />
   <br />
   <%= f.submit %>
