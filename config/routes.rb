@@ -6,7 +6,9 @@ Forem::Engine.routes.draw do
   end
 
   resources :topics do
-    resources :posts
+    resources :posts do
+      put :inappropriate
+    end
   end
 
   namespace :admin do

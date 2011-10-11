@@ -40,6 +40,18 @@ module Forem
       redirect_to [@topic.forum, @topic]
     end
 
+    def inappropriate
+      @post = @topic.posts.find(params[:id])
+      unless @post.inappropriate
+        @post.update_attribute(:inappropriate, true)
+        flash[:notice] = "Post flagged."
+      else
+        @post.update_attribute(:inappropriate, false)
+        flash[:notice] = "Post unflagged."
+      end
+      redirect_to [@topic.forum, @topic]
+    end
+
     private
 
     def find_topic
