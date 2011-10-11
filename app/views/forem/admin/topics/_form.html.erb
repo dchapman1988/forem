@@ -7,8 +7,10 @@
   <%= f.label :hidden %>
   <%= f.check_box :hidden %>
   <br />
+  <br />
   <%= f.label :forum_id %>
-  <%= f.select :forum_id, options_from_collection_for_select(@forums, 'id', 'title') %>
+  <%= f.select :forum_id, options_from_collection_for_select(@forums, 'id', 'title'), :include_blank => true %>
+  <br />
   <br />
   <%= f.submit %>
 <% end %>
