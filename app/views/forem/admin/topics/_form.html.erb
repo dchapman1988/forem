@@ -13,7 +13,7 @@
   <br />
   <br />
   <%= f.label :forum_id %>
-  <%= f.select "forum_id", options_from_collection_for_select(Forem::Forum.all, :id, :title), :selected => :forum_id %>
+  <%= f.select "forum_id", options_from_collection_for_select(:id, :title, Forem::Forum.all), :selected => :forum_id %>
   <br />
   <br />
   <%= f.submit %>
