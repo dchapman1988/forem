@@ -21,6 +21,6 @@ Forem::Engine.routes.draw do
         put :toggle_pin
       end
     end
-    get 'inappropriate_posts', :controller => "admin/base", :action => "inappropriate_posts"
+    get 'inappropriate_posts', :controller => "base", :action => "inappropriate_posts"
   end
 end
