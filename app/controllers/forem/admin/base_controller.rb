@@ -7,6 +7,10 @@ module Forem
         # TODO: perhaps gather some stats here to show on the admin page?
       end
 
+      def inappropriate_posts
+        @posts = Forem::Post.find(:all, :conditions => {:inappropriate => true})
+      end
+
       private
 
       def authenticate_forem_admin
