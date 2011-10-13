@@ -17,7 +17,7 @@
       - @bans.each do |b|
         %tr{ :class => cycle('odd', 'even') }
           %td= link_to "#{Member.find(b.user_id).username}", main_app.member_path(Member.find(b.user_id))
-          %td= b.reason || "N/A"
+          %td= b.reason != "" ? b.reason : "(no reason given)"
           %td= link_to "#{Member.find(b.banned_by_user).username}", main_app.member_path(Member.find(b.banned_by_user))
           %td= b.banned_until.to_date
           %td= link_to "edit", edit_admin_ban_path(b)
