@@ -1,0 +1,10 @@
+%h2 Ban a Member
+= form_for [:admin, @ban] do |f|
+  = render :partial => 'form', :locals => {:f => f}
+  .actions
+    %br/
+    %div{:style => "float: left; width: auto;"}
+      = f.submit
+= button_to 'Cancel', admin_bans_path, :method => :get
+%br/
+%p= link_to "Back to Admin Area", admin_root_path

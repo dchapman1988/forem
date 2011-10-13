@@ -1,0 +1,20 @@
+.field
+  = f.hidden_field :banned_by_user, :value => current_member.id
+  %br/
+.field
+  = f.label :user_id
+  %br/
+  = f.select :user_id, options_from_collection_for_select(Member.find(:all, :order => 'username'), :id, :username, @ban.try(:user_id)), { :include_blank => true }
+  %br/
+.field
+  %br/
+  = f.label :reason
+  %br/
+  = f.text_field :reason
+  %br/
+.field
+  %br/
+  = f.label :banned_until
+  %br/
+  = f.datetime_select :banned_until
+  %br/

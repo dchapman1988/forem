@@ -1,0 +1,27 @@
+%h2 Banned Members
+%p
+  = link_to "Back to Admin Area", admin_root_path
+  |
+  = link_to "Ban a Member", new_admin_ban_path
+- if @bans.any?
+  %table
+    %thead
+      %tr
+        %th Banned Member
+        %th Reason
+        %th Banned By
+        %th Banned Until
+        %th Edit Ban
+        %th Remove Ban
+    %tbody
+      - @bans.each do |b|
+        %tr{ :class => cycle('odd', 'even') }
+          %td= link_to "#{Member.find(b.user_id).username}", main_app.member_path(Member.find(b.user_id))
+          %td= b.reason || "N/A"
+          %td= link_to "#{Member.find(b.banned_by_user).username}", main_app.member_path(Member.find(b.banned_by_user))
+          %td= b.banned_until.to_date
+          %td= link_to "edit", edit_admin_ban_path(b)
+          %td= link_to "delete", admin_ban_path(b), :method => :delete
+  %p= link_to "Back to Admin Area", admin_root_path
+- else
+  %strong No banned members at this time.

@@ -1,1 +1,12 @@
-<%= render :partial => 'forem/posts/post', :collection => @posts %>
+<h2>Inappropriate Posts</h2>
+<br />
+<%= link_to 'Back to Admin Area', admin_root_path %><br />
+<br />
+<div id="posts">
+  <% if @posts.any? %>
+    <%= render :partial => 'forem/posts/post', :collection => @posts %>
+  <% else %>
+    <strong>Congratulations! There were no inappropriate posts on the forums!</strong>
+  <% end %>
+</div>
+
