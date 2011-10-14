@@ -13,9 +13,14 @@ module Forem
       def create
         @ban = Forem::Ban.new params[:ban]
         unless @ban.user_id == @ban.banned_by_user
-          my_date = "#{params[:ban]['banned_until(1i)']}-#{params[:ban]['banned_until(2i)']}-#{params[:ban]['banned_until(3i)']} #{params[:ban]['banned_until(4i)']}:#{params[:ban]['banned_until(5i)']}:#{Time.now.sec}".to_time # problem? :trollface:
-          @ban.banned_until = my_date
-          @ban.save
+          unless params[:ban][:banned_until]
+            my_date = "#{params[:ban]['banned_until(1i)']}-#{params[:ban]['banned_until(2i)']}-#{params[:ban]['banned_until(3i)']} #{params[:ban]['banned_until(4i)']}:#{params[:ban]['banned_until(5i)']}:#{Time.now.sec}".to_time # problem? :trollface:
+            @ban.banned_until = my_date
+            @ban.save
+          else
+            @ban.banned_until = 1000.years.from_now
+            @ban.save
+          end
           flash[:notice] = "User was successfully banned."
         else
           flash[:error] = "Failed to ban the user."
