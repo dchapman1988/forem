@@ -11,12 +11,6 @@ Forem::Engine.routes.draw do
     end
   end
 
-  resources :forums do
-    resources :topics do
-      put :breaking_news
-    end
-  end
-
   namespace :admin do
     root :to => "base#index"
     resources :bans
